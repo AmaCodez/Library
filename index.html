@@ -9,38 +9,43 @@
 <body>
 
 <h1>Library</h1>
-<button class="addBtn">Add New Book</button>
-<div class="wrapper">
-    <div class="card"></div>
-</div>
+<button class="addBtn">New Book</button>
+<div class="wrapper"></div>
 
 
-<form action="" method="get" class="form" id="bookForm">
-   <div class="book-form">
-    <label for="bookName">Name of Book</label>
-    <input type="text" id="bookName" name="bookName">
-   </div>
-   <div class="author-form">
-    <label for="bookAuthor">Book's Author</label>
-    <input type="text" id="bookAuthor" name="bookAuthor">
-   </div>
-   <label for="bookpages">Number of pages</label>
-   <input type="number" id="bookPages" name="bookPages">
-  </div>
-  <div>
-    <label for="status-form">Have you completed this book?</label>
-    <input type="checkbox" id="status-form" name="bookStatus">
-  </div>
-  <div class='form-row'>
-    <button>Add Book</button>
-    <button class="cancel">Cancel</button>
-  </div>
-</form>
+<dialog id="form-dialog" >
+    <form action="" method="get" class="form">
+       <div class="book-form">
+            <label for="bookName">Name of Book</label>
+            <input type="text" id="bookName" name="bookName">
+       </div>
+       <div class="author-form">
+            <label for="bookAuthor">Book's Author</label>
+            <input type="text" id="bookAuthor" name="bookAuthor">
+       </div>
+       <div class="pages-form">
+            <label for="bookpages">Number of pages</label>
+            <input type="number" id="bookPages" name="bookPages">
+       </div>
+      <div class="status-form">
+            <label for="bookStatus">Have you completed this book?</label>
+            <input type="checkbox" id="bookStatus" name="bookStatus">
+      </div>
+      <div class='form-buttons'>
+            <button class="newBook">Add Book</button>
+            <button class="cancel">Cancel</button>
+      </div>
+    </form>
+</dialog>
 
    <script>
     const wrapper = document.querySelector('.wrapper');
-    const btn = document.querySelector('.addBtn');
-    const bookform = document.querySelector('#bookForm');
+    const addBtn = document.querySelector('.addBtn');
+    const dialog = document.querySelector('#form-dialog');
+    const newBookBtn = document.querySelector('.newBook');
+    const cancelBtn = document. querySelector('.cancel');
+    const form = document.querySelector('.form');
+
 
     const myLibrary = [];
 
@@ -48,64 +53,85 @@
         this.name = name;
         this.author = author;
         this.pages = pages;
-        this.read = read
-        this.info = function() {
-        return `The ${this.name} by ${this.author}, ${this.pages} pages, ${this.read}`;
-    };
+        this.read = read;
     }
 
-    // adding books to the library
     function addBookToLibrary(name, author, pages, read){
         const newBook = new Book(name, author, pages, read);
         myLibrary.push(newBook);
+        displayBooks();
     }
 
         function displayBooks(){
-        for(let i = 0; i< myLibrary.length; i++) {
+        for(let i = 0; i < myLibrary.length; i++) {
             const card = document.createElement('div');
             card.classList.add('card');
 
             const bookTitle = document.createElement('h1');
-            const author = document.createElement('p');
-            const pages = document.createElement('p');
-            const readBtn = document.createElement('button');
-
+            bookTitle.classList.add('title-item');
             bookTitle.textContent = myLibrary[i].name;
+
+            const author = document.createElement('p');
+            author.classList.add('author-item');
             author.textContent = `by ${myLibrary[i].author}`;
-            pages.textContent = `${myLibrary[i].pages} pages.`;
-            readBtn.textContent = myLibrary[i].readBtn ? 'Read': 'Not Read';
+
+            const pages = document.createElement('p');
+            pages.classList.add('page-item');
+            pages.textContent = `${myLibrary[i].pages} pages`;
+
+            // work on the addEventListener
+            const readBtn = document.createElement('button');
+            readBtn.classList.add('read-item');
+            readBtn.textContent = myLibrary[i].readBtn ? 'Read': 'Not Read'; 
+            readBtn.style.backgroundColor = myLibrary[i].read ? 'green' : 'gray';
+
+            readBtn.addEventListener('click', () => {
+            myLibrary[i].read = !myLibrary[i].read;
+            readBtn.textContent = myLibrary[i].read ? 'Read' : 'Not Read';
+            readBtn.style.backgroundColor = myLibrary[i].read ? 'green' : 'gray';
+            });
+         
+            const removeBook = document.createElement('button');
+            removeBook.classList.add('remove-item');
+            removeBook.textContent = 'Remove Book';
+            removeBook.addEventListener ('click', () => {
+                myLibrary.splice(i, 1);
+                displayBooks();
+            });
 
             card.appendChild(bookTitle);
             card.appendChild(author);
             card.appendChild(pages);
             card.appendChild(readBtn);
+            card.appendChild(removeBook);
 
             wrapper.appendChild(card);
         }
     }
    
 
-    // button to show/hide the form
-    btn.addEventListener('click', () => {
-        const form = document.querySelector('.form');
-        form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+    
+    addBtn.addEventListener('click', () => {
+       dialog.showModal();
     });
-    // Handle form submission
-    bookform.addEventListener('submit', (e) => {
+
+    cancelBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        dialog.close();
+    });
+
+    newBookBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-    const bookName = document.querySelector('#bookName').value;
-    const bookAuthor = document.querySelector('#bookAuthor').value;
-    const bookPages = document.querySelector('#bookPages').value;
-    const bookRead = document.querySelector('input[name="bookStatus"]:checked').value === 'Yes';
+        const bookName = document.querySelector('#bookName').value;
+        const bookAuthor = document.querySelector('#bookAuthor').value;
+        const bookPages = document.querySelector('#bookPages').value;
+        const bookRead = document.querySelector('#bookStatus').checked;
     
     addBookToLibrary(name, author, pages, read);
-    displayBooks();
-
-    bookform.reset(); 
-    bookform.style.display = 'none';
-    })
-
+    form.reset();
+    dialog.close();
+    });
 
    </script>
 </body>
