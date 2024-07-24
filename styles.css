@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .wrapper {
+    display: flex;
+    gap: 20px;
+    width: 300px;
+    overflow-x: scroll;
+  }
+  
+  .card{
+    padding: 20px 30px;
+    flex-shrink: 0;
+    width: 300px;
+    background-color: white;
+    border-radius: 14px;
+    text-align: center;
+  }
+  
+  /* form style */
+  
+  .form {
+    display: none;
+  }

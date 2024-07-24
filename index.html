@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myLibrary</title>
+<link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h1>Library</h1>
+<button class="addBtn">Add New Book</button>
+<div class="wrapper">
+    <div class="card"></div>
+</div>
+
+
+<form action="" method="get" class="form" id="bookForm">
+   <div class="book-form">
+    <label for="bookName">Name of Book</label>
+    <input type="text" id="bookName" name="bookName">
+   </div>
+   <div class="author-form">
+    <label for="bookAuthor">Book's Author</label>
+    <input type="text" id="bookAuthor" name="bookAuthor">
+   </div>
+   <label for="bookpages">Number of pages</label>
+   <input type="number" id="bookPages" name="bookPages">
+  </div>
+  <div>
+    <label for="status-form">Have you completed this book?</label>
+    <input type="checkbox" id="status-form" name="bookStatus">
+  </div>
+  <div class='form-row'>
+    <button>Add Book</button>
+    <button class="cancel">Cancel</button>
+  </div>
+</form>
+
+   <script>
+    const wrapper = document.querySelector('.wrapper');
+    const btn = document.querySelector('.addBtn');
+    const bookform = document.querySelector('#bookForm');
+
+    const myLibrary = [];
+
+    function Book(name, author, pages, read) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.read = read
+        this.info = function() {
+        return `The ${this.name} by ${this.author}, ${this.pages} pages, ${this.read}`;
+    };
+    }
+
+    // adding books to the library
+    function addBookToLibrary(name, author, pages, read){
+        const newBook = new Book(name, author, pages, read);
+        myLibrary.push(newBook);
+    }
+
+        function displayBooks(){
+        for(let i = 0; i< myLibrary.length; i++) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const bookTitle = document.createElement('h1');
+            const author = document.createElement('p');
+            const pages = document.createElement('p');
+            const readBtn = document.createElement('button');
+
+            bookTitle.textContent = myLibrary[i].name;
+            author.textContent = `by ${myLibrary[i].author}`;
+            pages.textContent = `${myLibrary[i].pages} pages.`;
+            readBtn.textContent = myLibrary[i].readBtn ? 'Read': 'Not Read';
+
+            card.appendChild(bookTitle);
+            card.appendChild(author);
+            card.appendChild(pages);
+            card.appendChild(readBtn);
+
+            wrapper.appendChild(card);
+        }
+    }
+   
+
+    // button to show/hide the form
+    btn.addEventListener('click', () => {
+        const form = document.querySelector('.form');
+        form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+    });
+    // Handle form submission
+    bookform.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+    const bookName = document.querySelector('#bookName').value;
+    const bookAuthor = document.querySelector('#bookAuthor').value;
+    const bookPages = document.querySelector('#bookPages').value;
+    const bookRead = document.querySelector('input[name="bookStatus"]:checked').value === 'Yes';
+    
+    addBookToLibrary(name, author, pages, read);
+    displayBooks();
+
+    bookform.reset(); 
+    bookform.style.display = 'none';
+    })
+
+
+   </script>
+</body>
+</html>
