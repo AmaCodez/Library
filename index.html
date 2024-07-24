@@ -12,7 +12,6 @@
 <button class="addBtn">New Book</button>
 <div class="wrapper"></div>
 
-
 <dialog id="form-dialog" >
     <form action="" method="get" class="form">
        <div class="book-form">
@@ -33,17 +32,18 @@
       </div>
       <div class='form-buttons'>
             <button class="newBook">Add Book</button>
-            <button class="cancel">Cancel</button>
+            <button class="cancel" formmethod="dialog">Cancel</button>
       </div>
     </form>
 </dialog>
+
+
 
    <script>
     const wrapper = document.querySelector('.wrapper');
     const addBtn = document.querySelector('.addBtn');
     const dialog = document.querySelector('#form-dialog');
     const newBookBtn = document.querySelector('.newBook');
-    const cancelBtn = document. querySelector('.cancel');
     const form = document.querySelector('.form');
 
 
@@ -81,7 +81,7 @@
 
             const readBtn = document.createElement('button');
             readBtn.classList.add('read-item');
-            readBtn.textContent = myLibrary[i].readBtn ? 'Read': 'Not Read'; 
+            readBtn.textContent = myLibrary[i].read ? 'Read' : 'Not Read';
             readBtn.style.backgroundColor = myLibrary[i].read ? 'green' : 'gray';
 
             readBtn.addEventListener('click', () => {
@@ -112,11 +112,6 @@
     
     addBtn.addEventListener('click', () => {
        dialog.showModal();
-    });
-
-    cancelBtn.addEventListener('click', (event) => {
-        event.preventDefault();
-        dialog.close();
     });
 
     newBookBtn.addEventListener('click', (e) => {
