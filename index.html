@@ -63,6 +63,7 @@
     }
 
         function displayBooks(){
+            wrapper.innerHTML = '';
         for(let i = 0; i < myLibrary.length; i++) {
             const card = document.createElement('div');
             card.classList.add('card');
