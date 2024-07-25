@@ -3,6 +3,7 @@ const addBtn = document.querySelector('.addBtn');
 const dialog = document.querySelector('#form-dialog');
 const newBookBtn = document.querySelector('.newBook');
 const form = document.querySelector('.form');
+const cancel = document.querySelector('.cancel');
 
 
 const myLibrary = [];
@@ -71,6 +72,11 @@ function addBookToLibrary(name, author, pages, read){
 
 addBtn.addEventListener('click', () => {
    dialog.showModal();
+});
+
+cancel.addEventListener('click', (event) => {
+    event.preventDefault();
+    dialog.close();
 });
 
 newBookBtn.addEventListener('click', (e) => {
