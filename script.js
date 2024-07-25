@@ -27,6 +27,12 @@ function addBookToLibrary(name, author, pages, read){
         const card = document.createElement('div');
         card.classList.add('card');
 
+        const textContainer = document.createElement('div');
+        textContainer.classList.add('text-container');
+
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('button-container');
+
         const bookTitle = document.createElement('h1');
         bookTitle.classList.add('title-item');
         bookTitle.textContent = myLibrary[i].name;
@@ -58,12 +64,16 @@ function addBookToLibrary(name, author, pages, read){
             displayBooks();
         });
 
-        card.appendChild(bookTitle);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(readBtn);
-        card.appendChild(removeBook);
+        textContainer.appendChild(bookTitle);
+        textContainer.appendChild(author);
+        textContainer.appendChild(pages);
 
+        buttonContainer.appendChild(readBtn);
+        buttonContainer.appendChild(removeBook);
+
+        card.append(textContainer);
+        card.append(buttonContainer);
+        
         wrapper.appendChild(card);
     }
 }
