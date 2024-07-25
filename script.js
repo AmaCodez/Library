@@ -48,12 +48,10 @@ function addBookToLibrary(name, author, pages, read){
         const readBtn = document.createElement('button');
         readBtn.classList.add('read-item');
         readBtn.textContent = myLibrary[i].read ? 'Read' : 'Not Read';
-        readBtn.style.backgroundColor = myLibrary[i].read ? 'green' : 'gray';
 
         readBtn.addEventListener('click', () => {
         myLibrary[i].read = !myLibrary[i].read;
         readBtn.textContent = myLibrary[i].read ? 'Read' : 'Not Read';
-        readBtn.style.backgroundColor = myLibrary[i].read ? 'green' : 'gray';
         });
      
         const removeBook = document.createElement('button');
@@ -73,7 +71,7 @@ function addBookToLibrary(name, author, pages, read){
 
         card.append(textContainer);
         card.append(buttonContainer);
-        
+
         wrapper.appendChild(card);
     }
 }

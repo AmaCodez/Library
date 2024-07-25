@@ -162,11 +162,58 @@ main{
   }
   
   .card{
-    padding: 20px 30px;
     flex-shrink: 0;
     width: 50vw;
     background-color: white;
     border-radius: 5px;
     text-align: center;
+    /* border: 1px solid blue; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    height: 40vh;
+  }
+
+  .text-container > .author-item{
+    font-size: 1.5rem;
+  }
+
+  .text-container > .page-item{
+    font-size: 1.3rem;
+  }
+
+
+  .button-container {
     border: var(--border-check);
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--brand-color);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .read-item{
+    padding: 5px 15px;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    background-color: var(--brand-color);
+    border: none;
+  }
+
+  .remove-item{
+    padding: 5px 15px;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    background-color: var(--brand-color);
+    border: none;
   }
