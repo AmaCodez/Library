@@ -129,3 +129,9 @@ addBookToLibrary(bookName, bookAuthor, bookPages, bookRead);
 form.reset();
 dialog.close();
 });
+
+addBookToLibrary('Sample Book 1', 'Author 1', 100, true);
+addBookToLibrary('Sample Book 2', 'Author 2', 200, false);
+addBookToLibrary('Sample Book 1', 'Author 1', 100, true);
+addBookToLibrary('Sample Book 2', 'Author 2', 200, false);
+addBookToLibrary('Sample Book 1', 'Author 1', 100, true);
