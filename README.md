@@ -1,4 +1,4 @@
-# LitCard (Library App)
+# LitCards (Library App)
 
 ## Project Description
 
