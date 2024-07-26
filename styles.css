@@ -114,7 +114,7 @@ header {
     color: var(--brand-color);
 }
 
-svg {
+.logo svg {
     width: auto;
     height: 4vh;
     fill: var(--brand-color);
@@ -167,8 +167,6 @@ main{
     background-color: white;
     border-radius: 5px;
     text-align: center;
-    /* border: 1px solid blue; */
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -178,7 +176,7 @@ main{
   .text-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding-top: 5vh;
     gap: 15px;
     height: 40vh;
   }
@@ -193,7 +191,6 @@ main{
 
 
   .button-container {
-    border: var(--border-check);
     padding: 10px;
     display: flex;
     justify-content: space-around;
@@ -217,3 +214,37 @@ main{
     background-color: var(--brand-color);
     border: none;
   }
+
+  .star{
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    padding: 10px 20px 10px 10px;
+    height: 10vh;
+  }
+
+  .star-btn svg {
+    width: auto;
+    height: 2.5vh;
+    fill: #5c5959;
+}
+
+.star-btn{
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    border: none;
+    background-color:#FFFFFF ;
+    cursor: pointer;
+} 
+
+.star-btn:hover {
+    background-color: #eaeaea;
+}
+
+.star-btn:active {
+    background-color: #e3e3e3;
+}

@@ -27,11 +27,38 @@ function addBookToLibrary(name, author, pages, read){
         const card = document.createElement('div');
         card.classList.add('card');
 
+        const star = document.createElement('div');
+        star.classList.add('star');
+
         const textContainer = document.createElement('div');
         textContainer.classList.add('text-container');
 
         const buttonContainer = document.createElement('div');
         buttonContainer.classList.add('button-container');
+
+        const starBtn = document.createElement('button');
+        starBtn.classList.add('star-btn');
+        starBtn.addEventListener('click', () => {
+            if (svg.style.fill === 'gold') {
+                svg.style.fill = '';
+            } else {
+                svg.style.fill = 'gold';
+            }
+        });
+
+        const svgNs = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(svgNs, 'svg');
+        svg.setAttributeNS(null, 'viewBox', '0 0 24 24');
+
+        const svgTitle = document.createElementNS(svgNs, 'title');
+        svgTitle.textContent = 'star';
+        svg.appendChild(svgTitle);
+
+        const path = document.createElementNS(svgNs, 'path');
+        path.setAttributeNS(null, 'd', 'M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z');
+        svg.appendChild(path);
+
+        starBtn.appendChild(svg);
 
         const bookTitle = document.createElement('h1');
         bookTitle.classList.add('title-item');
@@ -62,6 +89,8 @@ function addBookToLibrary(name, author, pages, read){
             displayBooks();
         });
 
+        star.appendChild(starBtn);
+
         textContainer.appendChild(bookTitle);
         textContainer.appendChild(author);
         textContainer.appendChild(pages);
@@ -69,6 +98,7 @@ function addBookToLibrary(name, author, pages, read){
         buttonContainer.appendChild(readBtn);
         buttonContainer.appendChild(removeBook);
 
+        card.appendChild(star);
         card.append(textContainer);
         card.append(buttonContainer);
 
